@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerPieceModifierMain : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerPieceModifierMain : MonoBehaviour
     [SerializeField] List<TankPieceScriptable> tpiece_Tracks;
     [SerializeField] List<TankPieceScriptable> tpiece_Projectiles;
 
+    [SerializeField] UnityEvent<TankPieceScriptable> OnTankPieceChangeEvent;
     private void Start()
     {
         panelPieceTypeSelection.OnButtonSelectPartType(TankPieceType.Hull);
@@ -35,6 +37,7 @@ public class PlayerPieceModifierMain : MonoBehaviour
     {
         panelPieceTypeSelection.SetButtonSelectPartType(tankPiece.pieceType, tankPiece.pieceSprite);
         tankSpriteModifier.ChangeSprite(tankPiece.pieceType, tankPiece.pieceSprite);
+        OnTankPieceChangeEvent?.Invoke(tankPiece);
     }
 
     private List<TankPieceScriptable> GetPiecesByType(TankPieceType pieceType)

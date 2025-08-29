@@ -1424,6 +1424,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9231e7581554a3d4e80f4c114f0fb617, type: 2}
   - {fileID: 11400000, guid: 0de106c3beb3fe547a31605f3c21b1ab, type: 2}
   - {fileID: 11400000, guid: b8c87f7c02435ba439f39394ecd29eca, type: 2}
+  OnTankPieceChangeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1869152253}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnTankPieceChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &502911768
 Transform:
   m_ObjectHideFlags: 0
@@ -4120,6 +4135,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b5d1e5363684640a87c593d7aca197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1869152251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869152252}
+  - component: {fileID: 1869152253}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869152252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869152251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.08, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5821221057246373375}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1869152253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869152251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad682b54f42c5841ab9df39da248e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movemove: {fileID: 0}
+  currentStats: []
+  place_Light: {r: 0, g: 0, b: 0, a: 0}
+  place_Track: {fileID: 0}
+  place_Hull: {fileID: 0}
+  place_Tower: {fileID: 0}
+  place_Gun: {fileID: 0}
+  place_GunConnector: {fileID: 0}
+  place_Projectile: {fileID: 0}
 --- !u!224 &1955823854 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2954288875191915338, guid: 24a368880fbe9e2468ca280255acb23a, type: 3}
@@ -4866,8 +4935,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6419668348947913028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.08, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4876,7 +4945,7 @@ Transform:
   - {fileID: 4452758894770455467}
   - {fileID: 4706968929196216970}
   - {fileID: 6703192629129738470}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1869152252}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5893547362732078356
 PrefabInstance:
@@ -5372,5 +5441,5 @@ SceneRoots:
   - {fileID: 663116879}
   - {fileID: 1173064344}
   - {fileID: 1548364299}
-  - {fileID: 5821221057246373375}
+  - {fileID: 1869152252}
   - {fileID: 502911768}
