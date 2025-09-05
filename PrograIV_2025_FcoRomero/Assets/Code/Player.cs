@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public TankPieceScriptable place_Gun;
     public TankPieceScriptable place_GunConnector;
     public TankPieceScriptable place_Projectile;
+    public string playerName;
+    public int currentDmg;
+    public int score;
+    public TankSpriteModifier modifier;
 
     private void Start()
     {
@@ -146,5 +150,50 @@ public class Player : MonoBehaviour
         }
     }
 
+    void LoadData()
+    {
+        LoadSaveSystem loadSave = new LoadSaveSystem();
+        PlayerDataInfo playerData = loadSave.LoadPlayerInfo();
 
+        playerName = playerData.playerName;
+        currentDmg = playerData.currentDmg;
+        score = playerData.score;
+
+        LoadResources loadResources = new LoadResources();
+
+        place_Track = loadResources.GetTankPieceScriptable(TankPieceType.Track, playerData.piecesName[0]);
+        place_Hull = loadResources.GetTankPieceScriptable(TankPieceType.Hull, playerData.piecesName[1]);
+        place_Tower = loadResources.GetTankPieceScriptable(TankPieceType.Tower, playerData.piecesName[2]);
+        place_Gun = loadResources.GetTankPieceScriptable(TankPieceType.Gun, playerData.piecesName[3]);
+        place_GunConnector = loadResources.GetTankPieceScriptable(TankPieceType.GunConnector, playerData.piecesName[4]);
+        place_Projectile = loadResources.GetTankPieceScriptable(TankPieceType.Projectile, playerData.piecesName[5]);
+
+        modifier.ChangeSprite(place_Track.pieceType, place_Track.pieceSprite);
+        modifier.ChangeSprite(place_Hull.pieceType, place_Hull.pieceSprite);
+        modifier.ChangeSprite(place_Tower.pieceType, place_Tower.pieceSprite);
+        modifier.ChangeSprite(place_Gun.pieceType, place_Gun.pieceSprite);
+        modifier.ChangeSprite(place_GunConnector.pieceType, place_GunConnector.pieceSprite);
+        modifier.ChangeSprite(place_Projectile.pieceType, place_Projectile.pieceSprite);
+
+        UpdateControllersWithTankPieces();
+    }
+    void SaveData()
+    {
+        PlayerDataInfo playerData = new PlayerDataInfo();
+
+        playerData.playerName = playerName;
+        playerData.currentDmg = currentDmg;
+        playerData.score = score;
+
+        playerData.piecesName = new List<string>();
+        playerData.piecesName.Add(place_Track.id);
+        playerData.piecesName.Add(place_Hull.id);
+        playerData.piecesName.Add(place_Tower.id);
+        playerData.piecesName.Add(place_Gun.id);
+        playerData.piecesName.Add(place_GunConnector.id);
+        playerData.piecesName.Add(place_Projectile.id);
+
+        LoadSaveSystem loadSave = new LoadSaveSystem();
+        loadSave.SavePlayerInfo(playerData);
+    }
 }
