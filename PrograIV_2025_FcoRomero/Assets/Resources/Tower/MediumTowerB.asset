@@ -15,4 +15,6 @@ MonoBehaviour:
   id: MediumTowerB
   pieceType: 3
   pieceSprite: {fileID: 21300000, guid: f523419b37f619c43b0e32f6e2e524af, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 4
+    value: 15

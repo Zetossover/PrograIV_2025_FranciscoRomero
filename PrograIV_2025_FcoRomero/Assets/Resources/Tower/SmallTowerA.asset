@@ -15,4 +15,6 @@ MonoBehaviour:
   id: SmallTowerA
   pieceType: 3
   pieceSprite: {fileID: 21300000, guid: d4560c6d6fc01cb42a07c7c64db28fde, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 4
+    value: 5

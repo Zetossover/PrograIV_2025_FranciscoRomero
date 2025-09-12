@@ -15,4 +15,6 @@ MonoBehaviour:
   id: HeavyTowerC
   pieceType: 3
   pieceSprite: {fileID: 21300000, guid: 78696e24cbcb7d0468b6482fb15339e5, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 4
+    value: 20

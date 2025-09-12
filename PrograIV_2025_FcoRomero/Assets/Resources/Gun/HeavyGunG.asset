@@ -15,4 +15,6 @@ MonoBehaviour:
   id: HeavyGunG
   pieceType: 4
   pieceSprite: {fileID: 21300000, guid: 4eeb73b17158c514eab3ed2d5244d873, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 5
+    value: 4

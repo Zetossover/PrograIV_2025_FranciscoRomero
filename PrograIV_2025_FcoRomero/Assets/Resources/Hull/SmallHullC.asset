@@ -15,4 +15,6 @@ MonoBehaviour:
   id: SmallHullC
   pieceType: 2
   pieceSprite: {fileID: 21300000, guid: e722d640e03e2154d89310b4e8b374db, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 3
+    value: 1

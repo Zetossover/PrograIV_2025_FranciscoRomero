@@ -15,4 +15,6 @@ MonoBehaviour:
   id: GunConnectorF
   pieceType: 5
   pieceSprite: {fileID: 21300000, guid: 43863ac6cf4a4634b9d02375d97d18b4, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 2
+    value: 3

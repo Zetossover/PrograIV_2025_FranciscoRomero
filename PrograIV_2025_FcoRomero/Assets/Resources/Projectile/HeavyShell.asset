@@ -15,4 +15,6 @@ MonoBehaviour:
   id: HeavyShell
   pieceType: 6
   pieceSprite: {fileID: 21300000, guid: cf8aac7c3d1e73f49a8de23bdb4bd6ce, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 2
+    value: 8

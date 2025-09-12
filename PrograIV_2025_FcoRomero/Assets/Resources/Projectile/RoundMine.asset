@@ -15,4 +15,6 @@ MonoBehaviour:
   id: RoundMine
   pieceType: 6
   pieceSprite: {fileID: 21300000, guid: 46a1119687b376743b1f19f928aca8ba, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 2
+    value: 10

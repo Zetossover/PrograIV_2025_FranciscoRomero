@@ -15,4 +15,6 @@ MonoBehaviour:
   id: SmallGunB
   pieceType: 4
   pieceSprite: {fileID: 21300000, guid: b3d5a576150683f42a18c0ceb3d0203f, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 5
+    value: 1

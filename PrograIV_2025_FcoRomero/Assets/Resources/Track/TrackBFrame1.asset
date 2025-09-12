@@ -15,4 +15,8 @@ MonoBehaviour:
   id: TrackBFrame1
   pieceType: 1
   pieceSprite: {fileID: 21300000, guid: 6e3675dd33e7b404b86496d5a7c4f3f9, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 0
+    value: 5
+  - type: 1
+    value: 5

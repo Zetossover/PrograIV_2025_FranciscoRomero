@@ -1,26 +1,55 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
+    [Header("PlayerInfo")]
     [SerializeField] Movement movemove;
-
     public List<StatInfo> currentStats = new List<StatInfo>();
+
     public Color place_Light;
+
+    public int currentDmg;
+    public int score;
+
+    [Header("TankPieceSO")]
     public TankPieceScriptable place_Track;
     public TankPieceScriptable place_Hull;
     public TankPieceScriptable place_Tower;
     public TankPieceScriptable place_Gun;
     public TankPieceScriptable place_GunConnector;
     public TankPieceScriptable place_Projectile;
-    public string playerName;
-    public int currentDmg;
-    public int score;
-    public TankSpriteModifier modifier;
 
+    [Header("Texts")]
+    [SerializeField] TMP_InputField inputField;
+    public TextMeshProUGUI tankTextName;
+    public string playerName;
+
+    public TankSpriteModifier modifier;
+    
+
+    private void Awake()
+    {
+        inputField.onValueChanged.AddListener(ChangeName);
+    }
     private void Start()
     {
         UpdateControllersWithTankPieces();
+    }
+
+    public void SaveandExit()
+    {
+        LoadData();
+    }
+    public void SaveInfo()
+    {
+        SaveData();
+    }
+    void ChangeName(string val)
+    {
+        tankTextName.text = val;
+        playerName = val;
     }
     public void OnTankPieceChange(TankPieceScriptable tankPiece)
     {
@@ -52,6 +81,7 @@ public class Player : MonoBehaviour
             default:
                 break;
         }
+        UpdateControllersWithTankPieces();
     }
 
     public void UpdateControllersWithTankPieces()
@@ -148,6 +178,7 @@ public class Player : MonoBehaviour
                 statsInfo.Add(newInfo);
             }
         }
+        currentStats = statsInfo;
     }
 
     void LoadData()
@@ -155,7 +186,7 @@ public class Player : MonoBehaviour
         LoadSaveSystem loadSave = new LoadSaveSystem();
         PlayerDataInfo playerData = loadSave.LoadPlayerInfo();
 
-        playerName = playerData.playerName;
+        ChangeName(playerData.playerName);
         currentDmg = playerData.currentDmg;
         score = playerData.score;
 

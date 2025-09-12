@@ -15,4 +15,6 @@ MonoBehaviour:
   id: MediumHullB
   pieceType: 2
   pieceSprite: {fileID: 21300000, guid: 3174d3bca3b62c24896dabb9812253bb, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 3
+    value: 2

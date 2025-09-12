@@ -15,4 +15,6 @@ MonoBehaviour:
   id: MediumGunC
   pieceType: 4
   pieceSprite: {fileID: 21300000, guid: 64b0356f87144f346aee6f16541b3baf, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 5
+    value: 3

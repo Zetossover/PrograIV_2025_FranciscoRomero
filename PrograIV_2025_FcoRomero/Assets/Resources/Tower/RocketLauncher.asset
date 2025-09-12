@@ -15,4 +15,6 @@ MonoBehaviour:
   id: RocketLauncher
   pieceType: 3
   pieceSprite: {fileID: 21300000, guid: db9044ee40360124a8c0c0169a8bfe87, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 4
+    value: 10

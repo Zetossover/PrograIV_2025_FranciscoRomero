@@ -15,4 +15,6 @@ MonoBehaviour:
   id: HeavyHullC
   pieceType: 2
   pieceSprite: {fileID: 21300000, guid: 7d0f7900faab5fd4fa058828fd546492, type: 3}
-  statInfo: []
+  statInfo:
+  - type: 3
+    value: 4
