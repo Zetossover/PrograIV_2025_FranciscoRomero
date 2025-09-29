@@ -8,7 +8,8 @@ public class PlayerPieceModifierMain : MonoBehaviour
     [SerializeField] PanelPieceSelection panelPieceSelection;
     [SerializeField] PanelPartTypeSelection panelPieceTypeSelection;
     [SerializeField] TankSpriteModifier tankSpriteModifier;
-    
+    [SerializeField] ColorPicker colorPicker;
+
     [Header("Pieces Info")]
     [SerializeField] List<TankPieceScriptable> tpiece_GunConnector;
     [SerializeField] List<TankPieceScriptable> tpiece_Guns;
@@ -25,7 +26,17 @@ public class PlayerPieceModifierMain : MonoBehaviour
 
     public void OnPieceTypeSelected(TankPieceType pieceType)
     {
-        panelPieceSelection.SetPanelSelection(GetPiecesByType(pieceType));
+        if (pieceType == TankPieceType.Light)
+        {
+            panelPieceSelection.EnablePanel(false);
+            colorPicker.EnablePanel(true);
+        }
+        else
+        {
+            panelPieceSelection.EnablePanel(true);
+            colorPicker.EnablePanel(false);
+            panelPieceSelection.SetPanelSelection(GetPiecesByType(pieceType));
+        }
     }
 
     public void OnPieceSelected(TankPieceType pieceType, string id)
@@ -72,5 +83,9 @@ public class PlayerPieceModifierMain : MonoBehaviour
     private TankPieceScriptable GetScriptableTankPiece(TankPieceType pieceType, string pieceID)
     {
         return GetPiecesByType(pieceType).Find(x => x.id == pieceID);
+    }
+    public void OnChangeColor(Color color)
+    {
+        tankSpriteModifier.ChangeLightColor(color);
     }
 }

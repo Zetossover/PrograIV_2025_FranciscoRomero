@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class PanelPieceSelection : MonoBehaviour
 {
+    [SerializeField] GameObject panel;
     [SerializeField] List<ButtonSelectPart> button_SelectPart;
     public UnityEvent<TankPieceType, string> ChangePieceEvent;
 
@@ -13,6 +14,11 @@ public class PanelPieceSelection : MonoBehaviour
         {
             item.AddListenerOnSelect(OnPartSelected);
         }
+    }
+
+    public void EnablePanel(bool isEnabled)
+    {
+        panel.SetActive(isEnabled);
     }
 
     private void OnDestroy()
