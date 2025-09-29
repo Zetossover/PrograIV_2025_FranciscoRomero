@@ -5,7 +5,7 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     [Header("PlayerInfo")]
-    [SerializeField] Movement movemove;
+    [SerializeField] TankMovement movemove;
     public List<StatInfo> currentStats = new List<StatInfo>();
 
     public Color place_Light;
@@ -226,5 +226,43 @@ public class Player : MonoBehaviour
 
         LoadSaveSystem loadSave = new LoadSaveSystem();
         loadSave.SavePlayerInfo(playerData);
+    }
+    public void UpdateControllersWithStats()
+    {
+        if (currentStats == null || currentStats.Count == 0) return;
+
+        foreach (StatInfo stat in currentStats)
+        {
+            switch (stat.type)
+            {
+                case StatType.Spd:
+                    if (movemove != null)
+                        movemove.speed = stat.value;
+                    break;
+
+                case StatType.RootSpd:
+                    if (movemove != null)
+                        movemove.speedRotate = stat.value;
+                    break;
+
+                case StatType.Attack:
+                    currentDmg = (int)stat.value;
+                    break;
+
+                case StatType.Defense:
+                    // Aquí puedes guardar en una variable de defensa en Player o PlayerStats
+                    break;
+
+                case StatType.Life:
+                    // Aquí puedes guardar en una variable de vida en Player o PlayerStats
+                    break;
+
+                case StatType.BulletSpd:
+                    Shoot shoot = GetComponent<Shoot>();
+                    if (shoot != null)
+                        shoot.bulletSpd = stat.value;
+                    break;
+            }
+        }
     }
 }
