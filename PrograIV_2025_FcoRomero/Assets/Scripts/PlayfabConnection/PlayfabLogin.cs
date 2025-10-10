@@ -4,11 +4,19 @@ using PlayFab.ClientModels;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class PlayfabLogin : MonoBehaviour
 {
     private Action<string, bool> OnFinishActionEvent;
-    
+
+    public delegate void OnEndRequestDel(string msg, bool result);
+    OnEndRequestDel OnEndRequestEvent;
+    public delegate void OnLoadRequestDel(string data, bool result);
+    OnLoadRequestDel OnEndLoadRequestEvent;
+    public delegate void OnLoadLeaderBoard(List<LeaderboardData> leaderBoard);
+    OnLoadLeaderBoard OnEndLoadLeaderBoardEvent;
+
     public void AnonimatoUser(Action<string, bool> onFinishAction)
     {
         OnFinishActionEvent = onFinishAction;
@@ -54,7 +62,121 @@ public class PlayfabLogin : MonoBehaviour
         };
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterUserResult, OnError);
     }
+    public void SaveData(string data, string dataKey)
+    {
+        var request = new UpdateUserDataRequest
+        {
+            Data = new Dictionary<string, string>
+            {
+                {dataKey, data},
+            }
+        };
+        PlayFabClientAPI.UpdateUserData(request, OnEndSaveData, OnError);
+    }
+    public void LoadData(string dataKey, Action<string> OnLoaded)
+    {
+        var request = new GetUserDataRequest();
 
+        PlayFabClientAPI.GetUserData(request, result =>
+        {
+            if (result.Data != null && result.Data.ContainsKey(dataKey))
+            {
+                string data = result.Data[dataKey].Value;
+                OnLoaded(data);
+            }
+            else
+            {
+                Debug.Log("Not Key Found");
+                OnLoaded(default);
+            }
+        }, OnError);
+    }
+    public void RecoverAccount(string mail, Action<string, bool> onFinishAction)
+    {
+        OnFinishActionEvent = onFinishAction;
+
+        var request = new SendAccountRecoveryEmailRequest
+        {
+            Email = mail,
+            TitleId = PlayFabSettings.staticSettings.TitleId
+        };
+
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnRecoverSuccess, OnError);
+    }
+    public void AddDataToMaxScore(int score, OnEndRequestDel onEndRequest)
+    {
+        OnEndRequestEvent = onEndRequest;
+        var request = new UpdatePlayerStatisticsRequest
+        {
+            Statistics = new System.Collections.Generic.List<PlayFab.ClientModels.StatisticUpdate>
+            {
+                new PlayFab.ClientModels.StatisticUpdate
+                {
+                    StatisticName = "MaxScore", // nombre de tu leaderboard
+                    Value = score
+                }
+            }
+        };
+
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnStatisticsResult, OnError);
+    }
+    public void GetDataFromMaxScore(OnLoadLeaderBoard onLoadLeaderBoard)
+    {
+        OnEndLoadLeaderBoardEvent = onLoadLeaderBoard;
+        var request = new GetLeaderboardRequest
+        {
+            StatisticName = "MaxScore", // nombre de tu leaderboard
+            StartPosition = 0,             // posición inicial (0 = primer lugar)
+            MaxResultsCount = 10           // cantidad máxima de resultados
+        };
+        PlayFabClientAPI.GetLeaderboard(request, OnLeaderBoardLoad, OnError);
+    }
+    private void OnLeaderBoardLoad(GetLeaderboardResult result)
+    {
+        List<LeaderboardData> dataList = new List<LeaderboardData>();
+        foreach (var item in result.Leaderboard)
+        {
+            LeaderboardData newData = new LeaderboardData()
+            {
+                displayName = item.DisplayName,
+                score = item.StatValue,
+                boardPos = item.Position
+            };
+            dataList.Add(newData);
+        }
+        OnEndLoadLeaderBoardEvent?.Invoke(dataList);
+    }
+    public void SetDisplayName(string displayName, OnEndRequestDel onEndRequest)
+    {
+        OnEndRequestEvent = onEndRequest;
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = displayName,
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnEndRequestDisplayName, OnError);
+    }
+
+    private void OnRecoverSuccess(SendAccountRecoveryEmailResult result)
+    {
+        Debug.Log("Correo de recuperación enviado.");
+        OnFinishActionEvent?.Invoke("Correo de recuperación enviado.", true);
+    }
+    private void OnEndSaveData(UpdateUserDataResult result)
+    {
+        Debug.Log("DataIsSaved");
+    }
+    private void OnStatisticsResult(UpdatePlayerStatisticsResult result)
+    {
+        Debug.Log("Succes");
+        OnEndRequestEvent?.Invoke("Succes", true);
+        OnEndRequestEvent = null;
+    }
+    private void OnEndRequestDisplayName(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Succes");
+        OnEndRequestEvent?.Invoke("Succes", true);
+        OnEndRequestEvent = null;
+    }
     private void OnError(PlayFabError error)
     {
         OnFinishActionEvent?.Invoke("Success", true);
