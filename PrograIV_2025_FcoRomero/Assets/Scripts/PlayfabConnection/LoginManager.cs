@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System;
+
 
 public class LoginManager : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class LoginManager : MonoBehaviour
     [Header("LeaderBoard")]
     public int score;
     public int lifePoints;
+    public string displayName;
     public List<LeaderboardData> leaderBoard;
 
     private void Start()
@@ -38,6 +41,24 @@ public class LoginManager : MonoBehaviour
         }
             
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            SavePjData();
+            playFabLogin.AddDataToMaxScore(score, OnFinishAction);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            LoadPjData();
+            LoadLeaderBoard();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+
+            playFabLogin.SetDisplayName(displayName, OnFinishAction);
+        }
+    }
     void LoadLeaderBoard()
     {
         playFabLogin.GetDataFromMaxScore(OnEndLoadLeaderBoard);
@@ -47,8 +68,34 @@ public class LoginManager : MonoBehaviour
     {
         leaderBoard = data;
     }
-
-
+    void SavePjData()
+    {
+        PJData pjData = new PJData();
+        {
+            pjData.score = score;
+        }
+        string json = JsonUtility.ToJson(pjData);
+        SetBlockPanel("saving data, not close the app", true);
+        playFabLogin.SaveData(json, "PjI");
+    }
+    void LoadPjData()
+    {
+        SetBlockPanel("Loading Data, not close the app", true);
+        playFabLogin.LoadData("Pj", OnLoadData);
+    }
+    void OnLoadData(string json, bool sucess)
+    {
+        if (sucess)
+        {
+            PJData pjData = JsonUtility.FromJson<PJData>(json);
+            score = pjData.score;
+            SetBlockPanel("Sucedio un error al cargar los datos", false);
+        }
+        else
+        {
+            SetBlockPanel("Data de datos existosa", true);
+        }
+    }
     public void OnClickLogin()
     {
         string mail = loginEmailInput.text;

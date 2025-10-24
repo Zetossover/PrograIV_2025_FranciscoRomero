@@ -73,8 +73,9 @@ public class PlayfabLogin : MonoBehaviour
         };
         PlayFabClientAPI.UpdateUserData(request, OnEndSaveData, OnError);
     }
-    public void LoadData(string dataKey, Action<string> OnLoaded)
+    public void LoadData(string dataKey, OnLoadRequestDel onLoadRequestEnd)
     {
+        OnEndLoadRequestEvent = onLoadRequestEnd;
         var request = new GetUserDataRequest();
 
         PlayFabClientAPI.GetUserData(request, result =>
@@ -82,12 +83,12 @@ public class PlayfabLogin : MonoBehaviour
             if (result.Data != null && result.Data.ContainsKey(dataKey))
             {
                 string data = result.Data[dataKey].Value;
-                OnLoaded(data);
+                OnEndLoadRequestEvent?.Invoke(data, true);
             }
             else
             {
                 Debug.Log("Not Key Found");
-                OnLoaded(default);
+                OnEndLoadRequestEvent?.Invoke(default, false);
             }
         }, OnError);
     }
