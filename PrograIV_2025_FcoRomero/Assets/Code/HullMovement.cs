@@ -4,10 +4,13 @@ using UnityEngine;
 public class HullMovement : MonoBehaviour
 {
     [Header("Configuración de la torreta")]
-    public float radioApuntar = 10f;
-    public float radioAtaque = 9f;
     public float tiempoEntreDisparos = 1f;
     public float powerBullet = 7f;
+
+    [Header("Radios de Torreta")]
+    [Range(0, 15)]
+    public float radioApuntar = 10f;
+    public float radioAtaque = 9f;
 
     [Header("Referencias")]
     public Transform spawnEnemy; 

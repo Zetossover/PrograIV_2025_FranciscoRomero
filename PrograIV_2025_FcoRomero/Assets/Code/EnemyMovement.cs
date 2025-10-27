@@ -3,26 +3,30 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Movimiento")]
+    //public Transform[] wayPoints;
+    //private int currentWaypoint;
     public float moveSpeed = 3f;
+    [Range(0, 15)]
     public float stopDistance = 1.5f;
 
     [Header("Rotación")]
-    public float rotationSpeed = 180f; // grados por segundo
-    public float rotationOffset = 0f;  // ajuste visual del sprite
+    public float rotationSpeed = 180f; 
+    public float rotationOffset = 0f;  
 
     [Header("Detección")]
+    [Range(0, 15)]
     public float detectionRadius = 6f;
     public LayerMask playerLayer;
 
     [Header("Referencias")]
     public Rigidbody2D rb;
-    public Transform visual; // el sprite o hijo del enemigo
+    public Transform visual; 
 
     private Transform player;
 
     void Update()
     {
-        // Buscar al jugador dentro del radio de detección
+        
         Collider2D target = Physics2D.OverlapCircle(transform.position, detectionRadius, playerLayer);
 
         if (target != null)
@@ -43,28 +47,33 @@ public class EnemyMovement : MonoBehaviour
         {
             StopCompletely();
         }
+
+        //if (transform.position != wayPoints[currentWaypoint].position)
+        //{
+        //    transform.position = Vector2.MoveTowards(transform.position, wayPoints[currentWaypoint].position, moveSpeed * Time.fixedDeltaTime);
+        //}
+        //else
+        //{
+        //    currentWaypoint++;
+        //}
     }
 
     void MoveAndRotateTowardsPlayer()
     {
-        // Dirección hacia el jugador
         Vector2 direction = (player.position - transform.position).normalized;
 
-        // Movimiento lineal
         rb.linearVelocity = direction * moveSpeed;
 
-        // Calcular ángulo en Z con offset
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + rotationOffset;
 
-        // Rotación suave
         float newAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
 
-        // Aplicar rotación al Rigidbody
         rb.MoveRotation(newAngle);
 
-        // Mantener el visual alineado
         if (visual != null)
+        {
             visual.rotation = Quaternion.Euler(0, 0, newAngle);
+        }
     }
 
     void StopCompletely()
@@ -75,12 +84,10 @@ public class EnemyMovement : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Radio de detección
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
 
-        // Radio de parada
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, stopDistance);
     }
 }

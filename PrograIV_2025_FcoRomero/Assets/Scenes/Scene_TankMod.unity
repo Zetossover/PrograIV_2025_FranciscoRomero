@@ -822,7 +822,7 @@ Transform:
   m_GameObject: {fileID: 171768643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.28, y: 0, z: 0}
+  m_LocalPosition: {x: -22.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -915,10 +915,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  stopDistance: 8
+  stopDistance: 7
   rotationSpeed: 180
   rotationOffset: -90
-  detectionRadius: 10
+  detectionRadius: 15
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -2036,6 +2036,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465527953}
   m_CullTransparentMesh: 1
+--- !u!1 &468219663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468219664}
+  m_Layer: 0
+  m_Name: Point2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &468219664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468219663}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.29, y: -10.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1884101210}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &502911766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,6 +3011,37 @@ RectTransform:
   m_AnchoredPosition: {x: -135.9, y: 49.1}
   m_SizeDelta: {x: 20, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &717083789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717083790}
+  m_Layer: 0
+  m_Name: Point1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &717083790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717083789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1884101210}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &731370553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3874,7 +3936,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6c55d1b41192f50409d83ab5e5953d29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64b0356f87144f346aee6f16541b3baf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4819,10 +4881,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c90860cbfed2c34990a0ba66cb88f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radioApuntar: 10
-  radioAtaque: 9
   tiempoEntreDisparos: 1
   powerBullet: 7
+  radioApuntar: 10
+  radioAtaque: 9
   spawnEnemy: {fileID: 1402813369}
   prefabEnemy3: {fileID: 0}
   detectionLayer:
@@ -4873,7 +4935,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: d4560c6d6fc01cb42a07c7c64db28fde, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5824,7 +5886,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 519db26ac7648064fabb6f100ecfe3db, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6195,8 +6257,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 534523404}
   m_HandleRect: {fileID: 534523403}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.75665355
+  m_Value: 1
+  m_Size: 0.82246375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6372,7 +6434,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 7cebb625b8f53944b9c69152893e91ef, type: 3}
-  m_Color: {r: 0.39215684, g: 1, b: 0, a: 0.44705883}
+  m_Color: {r: 0.39215684, g: 1, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6908,6 +6970,39 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.1244173, y: 2.07944}
   m_EdgeRadius: 0
+--- !u!1 &1884101209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1884101210}
+  m_Layer: 0
+  m_Name: Waypoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1884101210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884101209}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.925049, y: -0.18213156, z: 6.3657265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 717083790}
+  - {fileID: 468219664}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1955823854 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2954288875191915338, guid: 24a368880fbe9e2468ca280255acb23a, type: 3}
@@ -8219,10 +8314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c90860cbfed2c34990a0ba66cb88f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radioApuntar: 10
-  radioAtaque: 9
   tiempoEntreDisparos: 1
   powerBullet: 7
+  radioApuntar: 10
+  radioAtaque: 9
   spawnEnemy: {fileID: 6703192629129738470}
   prefabEnemy3: {fileID: 0}
   detectionLayer:
@@ -8329,3 +8424,4 @@ SceneRoots:
   - {fileID: 1869152252}
   - {fileID: 502911768}
   - {fileID: 171768645}
+  - {fileID: 1884101210}
