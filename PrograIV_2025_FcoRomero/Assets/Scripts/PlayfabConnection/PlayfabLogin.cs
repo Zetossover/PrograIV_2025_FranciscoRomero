@@ -5,8 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
-public class PlayfabLogin : MonoBehaviour
+public class PlayfabLogin
 {
     private Action<string, bool> OnFinishActionEvent;
 
@@ -49,6 +50,7 @@ public class PlayfabLogin : MonoBehaviour
     private void OnLoginResult(LoginResult result)
     {
         OnFinishActionEvent?.Invoke("Success", true);
+        SceneManager.LoadScene(1);
     }
 
     public void RegisterUser(string mail, string pass, Action<string, bool> onFinishAction)

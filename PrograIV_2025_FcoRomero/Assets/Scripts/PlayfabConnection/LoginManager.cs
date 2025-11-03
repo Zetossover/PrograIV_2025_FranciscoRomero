@@ -39,7 +39,7 @@ public class LoginManager : MonoBehaviour
         {
             registerWarningText.text = "";
         }
-            
+        playFabLogin = new PlayfabLogin();    
     }
     private void Update()
     {

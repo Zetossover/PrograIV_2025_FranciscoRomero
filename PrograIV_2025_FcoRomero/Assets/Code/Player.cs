@@ -184,8 +184,10 @@ public class Player : MonoBehaviour
     void LoadData()
     {
         LoadSaveSystem loadSave = new LoadSaveSystem();
-        PlayerDataInfo playerData = loadSave.LoadPlayerInfo();
-
+        PlayerDataInfo playerData = loadSave.LoadPlayerInfo(onEndLoadData);
+    }
+    public void onEndLoadData(PlayerDataInfo playerData)
+    {
         ChangeName(playerData.playerName);
         currentDmg = playerData.currentDmg;
         score = playerData.score;

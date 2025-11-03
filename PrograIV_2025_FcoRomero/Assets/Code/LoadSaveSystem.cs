@@ -1,12 +1,26 @@
+using System;
 using UnityEngine;
-public class LoadSaveSystem : MonoBehaviour 
+[System.Serializable]
+public class LoadSaveSystem 
 {
     string playerInfoDataKey = "PlayerInfo";
 
-    public PlayerDataInfo LoadPlayerInfo()
+    public PlayerDataInfo LoadPlayerInfo(Action<PlayerDataInfo> onEndLoadData)
     {
         string json = PlayerPrefs.GetString(playerInfoDataKey);
+
         PlayerDataInfo loadData = JsonUtility.FromJson<PlayerDataInfo>(json);
+
+        PlayfabLogin playFab = new PlayfabLogin();
+        playFab.LoadData(playerInfoDataKey, (data, result) =>
+        {
+            if (result == true)
+            {
+                json = data;
+                PlayerDataInfo loadData = JsonUtility.FromJson<PlayerDataInfo>(json);
+                onEndLoadData(loadData);
+            }
+        });
         return loadData;
     }
 
