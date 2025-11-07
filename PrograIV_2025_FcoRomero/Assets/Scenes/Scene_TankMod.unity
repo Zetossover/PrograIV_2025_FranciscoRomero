@@ -2099,7 +2099,7 @@ MonoBehaviour:
   panelPieceSelection: {fileID: 1173064343}
   panelPieceTypeSelection: {fileID: 1173064345}
   tankSpriteModifier: {fileID: 6419668348947913030}
-  colorPicker: {fileID: 0}
+  colorPicker: {fileID: 1173064346}
   tpiece_GunConnector:
   - {fileID: 11400000, guid: 5485e71fb8774654590470ba9b0c7d01, type: 2}
   - {fileID: 11400000, guid: c9e15e00e9e0b8c4a969af03ec5f79a9, type: 2}

@@ -17,6 +17,7 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_InputField loginPasswordInput;
 
     [Header("Register Inputs")]
+    [SerializeField] private TMP_InputField userInput;
     [SerializeField] private TMP_InputField registerEmailInput;
     [SerializeField] private TMP_InputField registerPasswordInput;
     [SerializeField] private TMP_InputField registerConfirmPasswordInput;
@@ -113,6 +114,7 @@ public class LoginManager : MonoBehaviour
 
     public void OnClickRegister()
     {
+        string username = userInput.text;
         string mail = registerEmailInput.text;
         string pass = registerPasswordInput.text;
         string confirm = registerConfirmPasswordInput.text;
@@ -120,7 +122,7 @@ public class LoginManager : MonoBehaviour
         if (registerWarningText != null)
             registerWarningText.text = "";
 
-        if (string.IsNullOrEmpty(mail) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(confirm))
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(mail) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(confirm))
         {
             SetBlockPanel("Por favor completa todos los campos.", true);
             return;
@@ -135,7 +137,7 @@ public class LoginManager : MonoBehaviour
         }
 
         SetBlockPanel("Creando cuenta...", true);
-        playFabLogin.RegisterUser(mail, pass, OnFinishAction);
+        playFabLogin.RegisterUser(username, mail, pass, OnFinishAction);
     }
 
     public void OnClickRecoverPassword()

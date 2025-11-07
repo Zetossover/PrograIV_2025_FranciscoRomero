@@ -31,7 +31,7 @@ public class PlayfabLogin
         }
         var request = new LoginWithCustomIDRequest
         {
-            CustomId = "FcoRomero",
+            CustomId = System.Guid.NewGuid().ToString(),
             CreateAccount = true
         };
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
@@ -53,13 +53,15 @@ public class PlayfabLogin
         SceneManager.LoadScene(1);
     }
 
-    public void RegisterUser(string mail, string pass, Action<string, bool> onFinishAction)
+    public void RegisterUser(string username, string mail, string pass, Action<string, bool> onFinishAction)
     {
         OnFinishActionEvent = onFinishAction;
         var request = new RegisterPlayFabUserRequest
         {
+            Username = username,
             Email = mail,
             Password = pass,
+            DisplayName = username,
             RequireBothUsernameAndEmail = false
         };
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterUserResult, OnError);
