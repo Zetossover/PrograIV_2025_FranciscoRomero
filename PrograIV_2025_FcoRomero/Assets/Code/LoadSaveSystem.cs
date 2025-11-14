@@ -27,6 +27,8 @@ public class LoadSaveSystem
     public void SavePlayerInfo(PlayerDataInfo dataToSave)
     {
         string json = JsonUtility.ToJson(dataToSave);
+        PlayfabLogin playfab = new PlayfabLogin();
+        playfab.SaveData(json,playerInfoDataKey);
 
         PlayerPrefs.SetString(playerInfoDataKey, json);
         Debug.Log("SaveData");

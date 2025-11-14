@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         UpdateControllersWithTankPieces();
     }
 
-    public void SaveandExit()
+    public void Load()
     {
         LoadData();
     }
@@ -188,6 +188,8 @@ public class Player : MonoBehaviour
     }
     public void onEndLoadData(PlayerDataInfo playerData)
     {
+        if (playerData == null) return;
+
         ChangeName(playerData.playerName);
         currentDmg = playerData.currentDmg;
         score = playerData.score;

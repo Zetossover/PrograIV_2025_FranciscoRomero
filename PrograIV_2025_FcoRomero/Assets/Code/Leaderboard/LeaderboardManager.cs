@@ -38,6 +38,7 @@ public class LeaderboardManager : MonoBehaviour
                 leaderboardContents[i].gameObject.SetActive(true);
                 leaderboardContents[i].SetLeaderboardContent(leaderBoardDataList[i]);
             }
+            else leaderboardContents[i].gameObject.SetActive(false);
         }
     }
 }
