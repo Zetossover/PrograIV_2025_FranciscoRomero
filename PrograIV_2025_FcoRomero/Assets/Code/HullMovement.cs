@@ -13,8 +13,8 @@ public class HullMovement : MonoBehaviour
     public float radioAtaque = 9f;
 
     [Header("Referencias")]
-    public Transform spawnEnemy; 
-    public GameObject prefabEnemy3; 
+    public Transform spawnBullet; 
+    public GameObject prefabBullet; 
 
     [Header("Detección de enemigos")]
     public LayerMask detectionLayer;
@@ -22,7 +22,17 @@ public class HullMovement : MonoBehaviour
     private Transform objetivoActual;
     private Vector2 direccion;
     private float tiempoUltimoDisparo;
+    private Player player;
 
+    void Start()
+    {
+        player = Object.FindFirstObjectByType<Player>();
+
+        if (player != null)
+        {
+            prefabBullet = player.GetCurrentProjectilePrefab();
+        }
+    }
     void Update()
     {
         DetectarObjetivo();
@@ -71,12 +81,23 @@ public class HullMovement : MonoBehaviour
 
     void Disparar()
     {
-        if (prefabEnemy3 == null || spawnEnemy == null) return;
+        if (spawnBullet == null || player == null) return;
 
+        // Obtener siempre el proyectil actual
+        GameObject prefabActual = player.GetCurrentProjectilePrefab();
+        if (prefabActual == null) return;
 
-        GameObject proyectil = Instantiate(prefabEnemy3, spawnEnemy.position, transform.rotation);
+        GameObject proyectil = Instantiate(prefabActual, spawnBullet.position, transform.rotation);
+
+        // Asignar sprite del scriptable
+        Bullet appearance = proyectil.GetComponent<Bullet>();
+        if (appearance != null)
+        {
+            appearance.SetSprite(player.place_Projectile.pieceSprite);
+        }
+
+        // Aplicar fuerza
         Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
-
         if (rb != null)
         {
             rb.AddForce(direccion.normalized * powerBullet, ForceMode2D.Impulse);

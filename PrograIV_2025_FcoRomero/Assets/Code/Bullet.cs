@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public SpriteRenderer spriteRenderer;
+    public int damage;
 
-    // Update is called once per frame
-    void Update()
+    public void SetSprite(Sprite newSprite)
     {
-        
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.sprite = newSprite;
+    }
+    public void SetDamage(int dmg)
+    {
+        damage = dmg;
     }
 }

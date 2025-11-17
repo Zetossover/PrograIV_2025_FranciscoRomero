@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -7,28 +8,26 @@ using UnityEngine.SocialPlatforms.Impl;
 public class LeaderboardManager : MonoBehaviour
 {
     [SerializeField] LeaderboardContent[] leaderboardContents;
+    [SerializeField] CanvasAnimation canvasAnim;
     public int score;
 
     private void Start()
     {
-       SaveDataToLeaderBoard();
+        score = PlayerPrefs.GetInt("CurrentPoints");
+        StartCoroutine(TimerLoad());
     }
-    void SaveDataToLeaderBoard()
+    IEnumerator TimerLoad()
     {
-        PlayfabLogin playfabLogin = new PlayfabLogin();
-        playfabLogin.AddDataToMaxScore(score, OnEndSaveScore);
-    }
-
-    private void OnEndSaveScore(string msg, bool result)
-    {
+        yield return canvasAnim.AnimPanelCoroutine(true);
+        yield return canvasAnim.ShowPointsCoroutine(score);
         LoadLeaderboard();
     }
-
     void LoadLeaderboard()
     {
-        PlayfabLogin playfabLogin = new PlayfabLogin();
-        playfabLogin.GetDataFromMaxScore(SetContent);
+        PlayfabLogin playfabmanager = new PlayfabLogin();
+        playfabmanager.GetDataFromMaxScore(SetContent);
     }
+
     void SetContent(List<LeaderboardData> leaderBoardDataList)
     {
         for (int i = 0; i < leaderboardContents.Length; i++)

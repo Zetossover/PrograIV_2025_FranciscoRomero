@@ -17,6 +17,7 @@ MonoBehaviour:
   pieceSprite: {fileID: 21300000, guid: 6e3675dd33e7b404b86496d5a7c4f3f9, type: 3}
   statInfo:
   - type: 0
-    value: 5
+    value: 30
   - type: 1
-    value: 5
+    value: 100
+  projectilePrefab: {fileID: 0}

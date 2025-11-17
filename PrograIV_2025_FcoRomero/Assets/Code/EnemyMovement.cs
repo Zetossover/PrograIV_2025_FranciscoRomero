@@ -20,7 +20,10 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Referencias")]
     public Rigidbody2D rb;
-    public Transform visual; 
+    public Transform visual;
+
+    [Header("Puntaje")]
+    public int scoreValue = 10;
 
     private Transform player;
 
@@ -57,7 +60,6 @@ public class EnemyMovement : MonoBehaviour
         //    currentWaypoint++;
         //}
     }
-
     void MoveAndRotateTowardsPlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
@@ -80,6 +82,24 @@ public class EnemyMovement : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        int bulletLayer = LayerMask.NameToLayer("Bullet");
+        if (other.gameObject.layer == bulletLayer)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        if (ScoreManager.Instance != null)
+            ScoreManager.Instance.AddScore(scoreValue);
+        else
+            Debug.LogWarning("No se pudo sumar puntaje.");
+
+        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()

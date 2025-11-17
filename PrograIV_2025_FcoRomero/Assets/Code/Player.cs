@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [Header("PlayerInfo")]
     [SerializeField] TankMovement movemove;
+    [SerializeField] HullMovement moveBullet;
     public List<StatInfo> currentStats = new List<StatInfo>();
 
     public Color place_Light;
@@ -37,7 +38,10 @@ public class Player : MonoBehaviour
     {
         UpdateControllersWithTankPieces();
     }
-
+    public GameObject GetCurrentProjectilePrefab()
+    {
+        return place_Projectile.projectilePrefab;
+    }
     public void Load()
     {
         LoadData();
@@ -82,6 +86,7 @@ public class Player : MonoBehaviour
                 break;
         }
         UpdateControllersWithTankPieces();
+        UpdateControllersWithStats();
     }
 
     public void UpdateControllersWithTankPieces()
@@ -179,6 +184,7 @@ public class Player : MonoBehaviour
             }
         }
         currentStats = statsInfo;
+        UpdateControllersWithStats();
     }
 
     void LoadData()
@@ -211,6 +217,7 @@ public class Player : MonoBehaviour
         modifier.ChangeSprite(place_Projectile.pieceType, place_Projectile.pieceSprite);
 
         UpdateControllersWithTankPieces();
+        UpdateControllersWithStats();
     }
     void SaveData()
     {
@@ -250,7 +257,8 @@ public class Player : MonoBehaviour
                     break;
 
                 case StatType.Attack:
-                    currentDmg = (int)stat.value;
+                    if (moveBullet != null)
+                        moveBullet.powerBullet = stat.value;
                     break;
 
                 case StatType.Defense:
@@ -262,9 +270,8 @@ public class Player : MonoBehaviour
                     break;
 
                 case StatType.BulletSpd:
-                    Shoot shoot = GetComponent<Shoot>();
-                    if (shoot != null)
-                        shoot.bulletSpd = stat.value;
+                    if (moveBullet != null)
+                        moveBullet.tiempoEntreDisparos = 1f / stat.value;
                     break;
             }
         }

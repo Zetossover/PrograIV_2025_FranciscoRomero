@@ -8,4 +8,6 @@ public class TankPieceScriptable : ScriptableObject
     public TankPieceType pieceType;
     public Sprite pieceSprite;
     public List<StatInfo> statInfo;
+
+    public GameObject projectilePrefab;
 }
