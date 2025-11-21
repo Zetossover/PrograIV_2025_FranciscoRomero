@@ -6,6 +6,11 @@ public class Paused : MonoBehaviour
 
     private bool isPaused = false;
 
+    void Start()
+    {
+        Pause();
+    }
+
     public void Pause()
     {
         isPaused = !isPaused;

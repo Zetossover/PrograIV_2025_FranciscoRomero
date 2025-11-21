@@ -83,20 +83,17 @@ public class HullMovement : MonoBehaviour
     {
         if (spawnBullet == null || player == null) return;
 
-        // Obtener siempre el proyectil actual
         GameObject prefabActual = player.GetCurrentProjectilePrefab();
         if (prefabActual == null) return;
 
         GameObject proyectil = Instantiate(prefabActual, spawnBullet.position, transform.rotation);
 
-        // Asignar sprite del scriptable
         Bullet appearance = proyectil.GetComponent<Bullet>();
         if (appearance != null)
         {
             appearance.SetSprite(player.place_Projectile.pieceSprite);
         }
 
-        // Aplicar fuerza
         Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
         if (rb != null)
         {

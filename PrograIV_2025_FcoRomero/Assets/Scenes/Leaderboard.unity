@@ -510,7 +510,9 @@ MonoBehaviour:
   leaderboardContents:
   - {fileID: 4538045883027231597}
   - {fileID: 709589072}
-  score: 88
+  canvasAnim: {fileID: 533637663}
+  finalScoreText: {fileID: 846067543}
+  score: 0
 --- !u!114 &533637663
 MonoBehaviour:
   m_ObjectHideFlags: 0

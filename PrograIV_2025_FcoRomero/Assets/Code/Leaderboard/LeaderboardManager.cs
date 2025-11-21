@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -9,11 +10,14 @@ public class LeaderboardManager : MonoBehaviour
 {
     [SerializeField] LeaderboardContent[] leaderboardContents;
     [SerializeField] CanvasAnimation canvasAnim;
+    [SerializeField] TextMeshProUGUI finalScoreText;
     public int score;
 
     private void Start()
     {
-        score = PlayerPrefs.GetInt("CurrentPoints");
+        score = PlayerPrefs.GetInt("CurrentPoints", 0);
+        finalScoreText.text = score.ToString();
+
         StartCoroutine(TimerLoad());
     }
     IEnumerator TimerLoad()
