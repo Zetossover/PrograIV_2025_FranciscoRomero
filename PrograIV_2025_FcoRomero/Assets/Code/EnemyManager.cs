@@ -12,8 +12,8 @@ public class EnemyManager : MonoBehaviour
     [Header("Spawn Settings")]
     public Transform centerPoint;
 
-    public float spawnRadius = 10f;      // radio máximo
-    public float minSpawnRadius = 3f;    // radio mínimo (NUEVO)
+    public float spawnRadius = 10f;     
+    public float minSpawnRadius = 3f;    
 
     public int maxActiveEnemies = 5;
 
@@ -83,11 +83,6 @@ public class EnemyManager : MonoBehaviour
 
         currentActiveEnemies++;
     }
-
-    // -----------------------------------------
-    // NUEVO: Obtiene una posición válida entre
-    // minSpawnRadius y spawnRadius
-    // -----------------------------------------
     Vector3 GetValidSpawnPosition()
     {
         Vector2 randomDir = Random.insideUnitCircle.normalized;
