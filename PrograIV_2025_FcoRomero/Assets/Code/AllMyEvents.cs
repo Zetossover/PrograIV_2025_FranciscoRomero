@@ -18,6 +18,15 @@ public class EnemyKilled : Event
     public string EnemyKilledId { set { SetParameter("enemyKilledId", value); } }
 
 }
+public class LogEvent : Event
+{
+    public LogEvent() : base("logEvent")//base("Siempre va el nombre del evento igual que el dashboard)
+    {
+    }
+    //aca bajo vamos a poner los mismas variables que en el dashboard
+    public int Log_Event { set { SetParameter("Log_Event", value); } }
+
+}
 public class MySecondCustomEvent : Event
 {
     public MySecondCustomEvent() : base("mySecondCustomEvent")//base("Siempre va el nombre del evento igual que el dashboard)

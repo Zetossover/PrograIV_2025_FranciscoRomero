@@ -18,6 +18,8 @@ public class PlayfabLogin
     public delegate void OnLoadLeaderBoard(List<LeaderboardData> leaderBoard);
     OnLoadLeaderBoard OnEndLoadLeaderBoardEvent;
 
+    int LoginSucess = 1;
+
     public void AnonimatoUser(Action<string, bool> onFinishAction)
     {
         OnFinishActionEvent = onFinishAction;
@@ -50,6 +52,7 @@ public class PlayfabLogin
     private void OnLoginResult(LoginResult result)
     {
         OnFinishActionEvent?.Invoke("Success", true);
+        AnalyticsManager.Instance.LogsEvent(LoginSucess);
         SceneManager.LoadScene(1);
     }
 

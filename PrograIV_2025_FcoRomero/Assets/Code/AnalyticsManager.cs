@@ -80,6 +80,17 @@ public class AnalyticsManager : MonoBehaviour
             AnalyticsService.Instance.RecordEvent(enemyKilledEvent);
         }
     }
+    public void LogsEvent(int LogSucess)
+    {
+        if (isInitialized)
+        {
+            LogEvent logsucessEvent = new LogEvent()
+            {
+                Log_Event = LogSucess,
+            };
+            AnalyticsService.Instance.RecordEvent(logsucessEvent);
+        }
+    }
 
 
     // -----------------------------
