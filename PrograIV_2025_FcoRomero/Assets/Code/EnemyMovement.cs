@@ -23,6 +23,8 @@ public class EnemyMovement : MonoBehaviour
     private int currentLife;
     public int scoreValue = 10;
 
+    public string id;
+
     [HideInInspector] public EnemyManager manager;
 
     private Transform player;
@@ -122,6 +124,8 @@ public class EnemyMovement : MonoBehaviour
 
         // Desactivar objeto (pooling)
         gameObject.SetActive(false);
+
+        AnalyticsManager.Instance.EnemyKilled(id);
     }
 
     // Gizmos

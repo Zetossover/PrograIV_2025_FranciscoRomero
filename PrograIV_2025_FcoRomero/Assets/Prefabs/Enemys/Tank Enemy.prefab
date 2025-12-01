@@ -511,6 +511,7 @@ MonoBehaviour:
   visual: {fileID: 7215416560653255118}
   maxLife: 10
   scoreValue: 10
+  id: Small Tank
   manager: {fileID: 0}
 --- !u!1 &7782253558305439142
 GameObject:

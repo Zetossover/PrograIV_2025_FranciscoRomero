@@ -480,6 +480,7 @@ MonoBehaviour:
   visual: {fileID: 2680112771892273003}
   maxLife: 20
   scoreValue: 20
+  id: Big Tank
   manager: {fileID: 0}
 --- !u!1 &6612544223396602379
 GameObject:

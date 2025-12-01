@@ -565,6 +565,7 @@ MonoBehaviour:
   visual: {fileID: 7140833860013181734}
   maxLife: 5
   scoreValue: 15
+  id: Torret Tank
   manager: {fileID: 0}
 --- !u!1 &8143101796879660911
 GameObject:
