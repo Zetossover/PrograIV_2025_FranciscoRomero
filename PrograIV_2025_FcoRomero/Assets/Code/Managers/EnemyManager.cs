@@ -83,6 +83,18 @@ public class EnemyManager : MonoBehaviour
 
         currentActiveEnemies++;
     }
+    public void KillAllEnemies()
+    {
+        foreach (GameObject enemy in enemyPool)
+        {
+            if (enemy.activeSelf)
+            {
+                enemy.SetActive(false);
+            }
+        }
+
+        currentActiveEnemies = 0;
+    }
     Vector3 GetValidSpawnPosition()
     {
         Vector2 randomDir = Random.insideUnitCircle.normalized;

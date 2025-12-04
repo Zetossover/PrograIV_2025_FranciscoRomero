@@ -9,6 +9,7 @@ public class GasolinaPickup : MonoBehaviour
             TimeManager.Instance.AddTime(
                 TimeManager.Instance.gasTimeBonus
             );
+            TimeManager.Instance.RegisterCollectedItem();
 
             Destroy(gameObject);
         }

@@ -92,6 +92,56 @@ public class AnalyticsManager : MonoBehaviour
         }
     }
 
+    public void TimeEvent(float CurrentTime)
+    {
+        if (isInitialized)
+        {
+            TimeEvent timeEvent = new TimeEvent()
+            {
+                Time_Event = CurrentTime,
+            };
+            AnalyticsService.Instance.RecordEvent(timeEvent);
+        }
+    }
+    public void CollectorEvent(int itemCollected)
+    {
+        if (isInitialized)
+        {
+            CollectorEvent collectorEvent = new CollectorEvent()
+            {
+                Collector_Event = itemCollected,
+            };
+            AnalyticsService.Instance.RecordEvent(collectorEvent);
+        }
+    }
+    public void ScoreEvent(int scoreCollected)
+    {
+        if (isInitialized)
+        {
+            ScoreEvent scoreEvent = new ScoreEvent()
+            {
+                Score_Event = scoreCollected,
+            };
+            AnalyticsService.Instance.RecordEvent(scoreEvent);
+        }
+    }
+    public void TankIDEvent(Player player)
+    {
+        if (!isInitialized) return;
+
+        TankIdEvent tankIdEvent = new TankIdEvent()
+        {
+            Track_Id = player.place_Track.id,
+            Hull_Id = player.place_Hull.id,
+            Tower_Id = player.place_Tower.id,
+            Gun_Id = player.place_Gun.id,
+            Connector_Id = player.place_GunConnector.id,
+            Projectile_Id = player.place_Projectile.id
+        };
+
+        AnalyticsService.Instance.RecordEvent(tankIdEvent);
+    }
+
 
     // -----------------------------
     //   ATAJOS PARA EVENTOS COMUNES
@@ -112,10 +162,7 @@ public class AnalyticsManager : MonoBehaviour
 
     }
 
-    public void ItemCollected(string itemId)
-    {
-       
-    }
+   
 
     public void SessionStart()
     {

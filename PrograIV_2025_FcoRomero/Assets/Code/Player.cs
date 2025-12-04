@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         UpdateControllersWithTankPieces();
+        LoadData();
     }
     public GameObject GetCurrentProjectilePrefab()
     {
@@ -49,6 +50,11 @@ public class Player : MonoBehaviour
     public void SaveInfo()
     {
         SaveData();
+    }
+    public void SaveAndReload()
+    {
+        SaveData();    // Guarda primero
+        LoadData();    // Luego carga inmediatamente
     }
     void ChangeName(string val)
     {
@@ -234,6 +240,9 @@ public class Player : MonoBehaviour
         playerData.piecesName.Add(place_Gun.id);
         playerData.piecesName.Add(place_GunConnector.id);
         playerData.piecesName.Add(place_Projectile.id);
+
+        Debug.Log("GUARDANDO TANQUE Enviando evento");
+        AnalyticsManager.Instance.TankIDEvent(this);
 
         LoadSaveSystem loadSave = new LoadSaveSystem();
         loadSave.SavePlayerInfo(playerData);

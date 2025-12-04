@@ -15,10 +15,13 @@ public class TimeManager : MonoBehaviour
 
     [Header("Ajustes de eventos")]
     public float damageTimePenalty = 10f;  
-    public float gasTimeBonus = 30f;       
+    public float gasTimeBonus = 30f;
+
+    [Header("Analítica")]
+    public int collectedItems = 0;
 
     private bool isGameOver = false;
-
+    private float elapsedTime = 0f;
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -36,6 +39,7 @@ public class TimeManager : MonoBehaviour
         if (isGameOver) return;
 
         currentTime -= Time.deltaTime;
+        elapsedTime += Time.deltaTime;
 
         if (currentTime <= 0)
         {
@@ -61,7 +65,10 @@ public class TimeManager : MonoBehaviour
             GameOver();
         }
     }
-
+    public void RegisterCollectedItem()
+    {
+        collectedItems++;
+    }
     public void AddTime(float amount)
     {
         if (isGameOver) return;
@@ -81,6 +88,14 @@ public class TimeManager : MonoBehaviour
     void GameOver()
     {
         isGameOver = true;
+
+        AnalyticsManager.Instance.TimeEvent(elapsedTime);
+
+        AnalyticsManager.Instance.CollectorEvent(collectedItems);
+
+        AnalyticsManager.Instance.ScoreEvent(ScoreManager.Instance.score);
+
+        collectedItems = 0;
 
         ScoreManager.Instance.SaveDataToLeaderBoard((msg, success) =>
         {
