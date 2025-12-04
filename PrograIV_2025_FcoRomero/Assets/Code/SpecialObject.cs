@@ -3,10 +3,11 @@ using UnityEngine;
 public class SpecialObject : MonoBehaviour
 {
     private bool used = false;
+    private int specialCollected = 1;
 
     [Header("Boss Settings")]
     public GameObject specialEnemyPrefab;
-    public Transform bossSpawnPoint; // Posición fija donde aparece
+    public Transform bossSpawnPoint; 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,6 +18,7 @@ public class SpecialObject : MonoBehaviour
             used = true;
 
             EnemyManager manager = FindFirstObjectByType<EnemyManager>();
+            AnalyticsManager.Instance.SpecialEvent(specialCollected);
 
             if (manager != null)
             {

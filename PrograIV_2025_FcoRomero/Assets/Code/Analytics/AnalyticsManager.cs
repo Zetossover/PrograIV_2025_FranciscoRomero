@@ -142,63 +142,26 @@ public class AnalyticsManager : MonoBehaviour
         AnalyticsService.Instance.RecordEvent(tankIdEvent);
     }
 
-
-    // -----------------------------
-    //   ATAJOS PARA EVENTOS COMUNES
-    // -----------------------------
-
-    public void LevelStart(int level)
+    public void SpecialEvent(int specialInt)
     {
-       
+        if (isInitialized)
+        {
+            SpecialObjectEvent specialEvent = new SpecialObjectEvent()
+            {
+                Special_Object = specialInt,
+            };
+            AnalyticsService.Instance.RecordEvent(specialEvent);
+        }
     }
-
-    public void LevelComplete(int level, float time)
+    public void BossDefeat(int bossDefeat)
     {
-        
-    }
-
-    public void PlayerDied(string reason, float time, Vector3 pos)
-    {
-
-    }
-
-   
-
-    public void SessionStart()
-    {
-       
-    }
-
-    public void SessionEnd()
-    {
-        
-    }
-
-    //Eventos Fco
-
-   
-    public void EnemyDamage(int damage)
-    {
-        
-    }
-    public void Points(int score) 
-    {
-        
-    }
-    public void Collections(int gasoline)
-    {
-       
-    }
-    public void TimeDuration(int time)
-    {
-       
-    }
-    public void PlayerDeath(string enemyId)
-    {
-       
-    }
-    public void PlayerPieces(string pieceId)
-    {
-      
+        if (isInitialized)
+        {
+            BossDefeatEvent bossEvent = new BossDefeatEvent()
+            {
+                Boss_Defeat = bossDefeat,
+            };
+            AnalyticsService.Instance.RecordEvent(bossEvent);
+        }
     }
 }

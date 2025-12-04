@@ -65,6 +65,24 @@ public class TankIdEvent : Event
     public string Connector_Id { set { SetParameter("connectorId", value); } }
     public string Projectile_Id { set { SetParameter("projectileId", value); } }
 }
+public class SpecialObjectEvent : Event
+{
+    public SpecialObjectEvent() : base("specialObjectEvent") //base("Siempre va el nombre del evento igual que el dashboard)
+    {
+    }
+    //aca bajo vamos a poner los mismas variables que en el dashboard
+    public int Special_Object { set { SetParameter("specialObjectInt", value); } }
+
+}
+public class BossDefeatEvent : Event
+{
+    public BossDefeatEvent() : base("bossDefeatEvent") //base("Siempre va el nombre del evento igual que el dashboard)
+    {
+    }
+    //aca bajo vamos a poner los mismas variables que en el dashboard
+    public int Boss_Defeat { set { SetParameter("bossDefeatInt", value); } }
+
+}
 public class MySecondCustomEvent : Event
 {
     public MySecondCustomEvent() : base("mySecondCustomEvent")//base("Siempre va el nombre del evento igual que el dashboard)
